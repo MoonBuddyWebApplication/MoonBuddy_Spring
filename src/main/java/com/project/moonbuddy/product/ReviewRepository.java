@@ -1,7 +1,5 @@
 package com.project.moonbuddy.product;
-
-import com.project.moonbuddy.product.Review;
-import com.project.moonbuddy.user.User;
+import com.project.moonbuddy.user.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

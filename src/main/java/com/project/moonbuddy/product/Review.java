@@ -1,8 +1,7 @@
 package com.project.moonbuddy.product;
 
 import com.project.moonbuddy.domain.BaseTimeEntity;
-import com.project.moonbuddy.product.Product;
-import com.project.moonbuddy.user.User;
+import com.project.moonbuddy.user.model.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

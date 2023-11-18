@@ -2,7 +2,7 @@ package com.project.moonbuddy.product.dto;
 
 import com.project.moonbuddy.product.Product;
 import com.project.moonbuddy.product.Review;
-import com.project.moonbuddy.user.User;
+import com.project.moonbuddy.user.model.User;
 import lombok.*;
 
 public class ReviewDTO {
@@ -41,7 +41,7 @@ public class ReviewDTO {
         public Response(Review review){
             this.replyId=review.getId();
             this.productId=review.getProduct().getId();
-            this.nickname=review.getUser().getName();
+            this.nickname=review.getUser().getNickName();
             this.userId=review.getUser().getId();
             this.reviewcomment=review.getReviewContetent();
             this.createDate=review.getCreatedDate().toString();

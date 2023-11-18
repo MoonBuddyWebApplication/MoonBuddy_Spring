@@ -1,6 +1,5 @@
 package com.project.moonbuddy.product;
 
-import com.project.moonbuddy.board.Reply;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

@@ -1,8 +1,4 @@
 package com.project.moonbuddy.product;
-
-import com.project.moonbuddy.board.Board;
-import com.project.moonbuddy.board.dto.ReplyDTO;
-import com.project.moonbuddy.board.dto.response.BoardResponse;
 import com.project.moonbuddy.product.dto.ReviewDTO;
 import com.project.moonbuddy.product.dto.response.ProductResponse;
 import lombok.extern.slf4j.Slf4j;

@@ -1,13 +1,8 @@
 package com.project.moonbuddy.product;
 
-
-import com.project.moonbuddy.product.Product;
-import com.project.moonbuddy.product.ProductRepository;
-import com.project.moonbuddy.product.Review;
-import com.project.moonbuddy.product.ReviewRepository;
 import com.project.moonbuddy.product.dto.ReviewDTO;
-import com.project.moonbuddy.user.User;
-import com.project.moonbuddy.user.UserRepository;
+import com.project.moonbuddy.user.model.User;
+import com.project.moonbuddy.user.model.UserRepository;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
