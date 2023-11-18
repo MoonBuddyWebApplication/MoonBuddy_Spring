@@ -2,6 +2,7 @@ package com.project.moonbuddy.board;
 
 import com.project.moonbuddy.board.dto.request.BoardWrite;
 import com.project.moonbuddy.board.dto.response.BoardResponse;
+import com.project.moonbuddy.board.model.BoardService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -17,7 +18,6 @@ import java.util.List;
 
 @Tag(name = "Board", description = "게시물 API")
 @Slf4j
-@CrossOrigin(origins = "http://172.16.65.251:3000")
 @AllArgsConstructor
 @RestController
 @RequestMapping("/board")
@@ -44,8 +44,6 @@ public class BoardController {
     })
     @PostMapping("/post")
     public ResponseEntity post(@RequestBody BoardWrite boardWrite){
-        //SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
-        //User user = userService.findUser(sessionUser);
         log.info("boardWrite={}", boardWrite);
         String status = boardService.register(boardWrite);
 

@@ -1,6 +1,7 @@
 package com.project.moonbuddy.board;
 
 import com.project.moonbuddy.board.dto.ReplyDTO;
+import com.project.moonbuddy.board.model.ReplyService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
