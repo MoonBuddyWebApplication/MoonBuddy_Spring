@@ -1,8 +1,8 @@
 package com.project.moonbuddy.board.dto;
 
-import com.project.moonbuddy.board.Board;
-import com.project.moonbuddy.board.Reply;
-import com.project.moonbuddy.user.User;
+import com.project.moonbuddy.board.model.Board;
+import com.project.moonbuddy.board.model.Reply;
+import com.project.moonbuddy.user.model.User;
 import lombok.*;
 
 public class ReplyDTO {
@@ -43,7 +43,7 @@ public class ReplyDTO {
         public Response(Reply reply) {
             this.replyId = reply.getId();
             this.boardId = reply.getBoard().getId();
-            this.nickname = reply.getUser().getName();
+            this.nickname = reply.getUser().getNickName();
             this.userId = reply.getUser().getId();
             this.comment = reply.getCommentContent();
             this.createdDate = reply.getCreatedDate().toString();
