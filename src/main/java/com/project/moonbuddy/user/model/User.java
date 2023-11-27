@@ -28,10 +28,10 @@ public class User {
     @JoinColumn(name = "criterion_id")
     private Criterion criterion;
 
-    public static User of(UserDTO userDTO, Criterion criterion) {
+    public static User of(UserDTO userDTO, String pass, Criterion criterion) {
         return User.builder()
                 .userId(userDTO.getUserId())
-                .pw(userDTO.getPw())
+                .pw(pass)
                 .nickName(userDTO.getNickName())
                 .criterion(criterion)
                 .build();
