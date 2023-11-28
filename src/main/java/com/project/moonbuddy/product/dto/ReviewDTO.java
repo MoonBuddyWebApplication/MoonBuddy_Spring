@@ -1,7 +1,7 @@
 package com.project.moonbuddy.product.dto;
 
-import com.project.moonbuddy.product.Product;
-import com.project.moonbuddy.product.Review;
+import com.project.moonbuddy.product.model.entity.Product;
+import com.project.moonbuddy.product.model.entity.Review;
 import com.project.moonbuddy.user.model.User;
 import lombok.*;
 
