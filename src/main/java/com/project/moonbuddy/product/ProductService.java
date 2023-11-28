@@ -1,4 +1,5 @@
 package com.project.moonbuddy.product;
+import com.project.moonbuddy.product.dto.MarkDTO;
 import com.project.moonbuddy.product.dto.ReviewDTO;
 import com.project.moonbuddy.product.dto.response.ProductResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -25,9 +26,10 @@ public class ProductService {
         List<ReviewDTO.Response> reviewlist = new ArrayList<>();
         product.getReviewList().forEach(v->
                 reviewlist.add(new ReviewDTO.Response(v)));
-        List<Mark> marklist = new ArrayList<>();
+
+        List<MarkDTO.Response> marklist=new ArrayList<>();
         product.getMarkList().forEach(v->
-                marklist.add(new Mark()));
+                marklist.add(new MarkDTO.Response(v)));
 
         ProductResponse productResponse=ProductResponse.builder()
                 .product_id(product.getId())
@@ -35,8 +37,8 @@ public class ProductService {
                 .category(product.getCategory())
                 .brand(product.getBrand())
                 .release_date(product.getRelease_date())
-                .description(product.getDescription())
-                .picture(product.getPicture())
+                .product_image(product.getProduct_image())
+                .product_info_image(product.getProduct_info_image())
                 .absorption(product.getAbsortion())
                 .humidity(product.getHumidity())
                 .satisfaction(product.getSatisfaction())
@@ -44,7 +46,7 @@ public class ProductService {
                 .price(product.getPrice())
                 .reviewList(reviewlist)
                 .markList(marklist)
-                .image(product.getImage())
+//                .image(product.getImage())
                 .build();
 
     return productResponse;

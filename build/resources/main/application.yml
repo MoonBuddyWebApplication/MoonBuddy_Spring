@@ -32,3 +32,6 @@ logging:
             sql: trace
 #  profiles:
 #    include: oauth
+jwt:
+  secretKey: TW9vbkJ1ZGR5SnNvbldlYlRva2VuUGFzc3dvcmRQYXNzd29yZFBhc3N3b3JkUGFzc3dvcmRQYXNzd29yZA== # 256bit 미만일 경우 -> WeakKeyExceptino 발생
+  tokenExpired: 86400
