@@ -10,16 +10,16 @@ public class MarkDTO {
     @RequiredArgsConstructor
     @Getter
     public static class Response {
-        private Long makrId;
+        private Long markId;
         private String name;
         private String explanation;
         private String image;
 
         public Response(Mark mark){
-                this.makrId=getMakrId();
-                this.name=getName();
-                this.explanation=getExplanation();
-                this.image=getImage();
+                this.markId = mark.getId();
+                this.name = mark.getName();
+                this.explanation = mark.getExplanation();
+                this.image = mark.getImage();
 
              }
 
