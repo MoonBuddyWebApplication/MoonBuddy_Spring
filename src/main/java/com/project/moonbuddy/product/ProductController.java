@@ -1,6 +1,7 @@
 package com.project.moonbuddy.product;
 
 
+import com.project.moonbuddy.auth.model.UserPrincipal;
 import com.project.moonbuddy.board.dto.response.BoardResponse;
 import com.project.moonbuddy.product.dto.response.ProductResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -10,6 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,8 +35,8 @@ public class ProductController {
             @ApiResponse(responseCode = "400", description = "BAD REQUEST"),
     })
     @GetMapping("/viewAll")
-    public ResponseEntity viewAll(){
-        List<ProductResponse> productList=productService.selectAll();
+    public ResponseEntity viewAll(@AuthenticationPrincipal UserPrincipal loginUser){
+        List<ProductResponse> productList=productService.selectAll(loginUser);
         return ResponseEntity.status(HttpStatus.OK).body(productList);
 
     }
@@ -45,8 +47,8 @@ public class ProductController {
             @ApiResponse(responseCode = "400", description = "BAD REQUEST"),
     })
     @GetMapping("/view/{id}")
-    public ResponseEntity view(@PathVariable("id") Long id){
-        ProductResponse productResponse = productService.select(id);
+    public ResponseEntity view(@PathVariable("id") Long id, @AuthenticationPrincipal UserPrincipal loginUser){
+        ProductResponse productResponse = productService.select(id, loginUser);
         return ResponseEntity.status(HttpStatus.OK).body(productResponse);
     }
 

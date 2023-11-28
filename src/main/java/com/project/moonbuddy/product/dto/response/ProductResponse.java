@@ -21,11 +21,8 @@ public class ProductResponse {
     private String release_date;
     private String product_image;
     private String product_info_image;
-    private double absorption;
-    private double humidity;
-    private double satisfaction;
-    private  double safety;
-    private double price;
+    private double score;
+
 //    private String image;
     private List<ReviewDTO.Response> reviewList;
     private List<MarkDTO.Response> markList;

@@ -1,5 +1,6 @@
 package com.project.moonbuddy.product;
 
+import com.project.moonbuddy.user.model.Criterion;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -50,4 +51,12 @@ public class Product {
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @OrderBy("id asc")
     private List<Mark> markList;
+
+    public double getScore(Criterion criterion) {
+        return this.absortion * criterion.getAbsorb()
+                + this.humidity * criterion.getHumidity()
+                + this.satisfaction * criterion.getSatisfaction()
+                + this.safety * criterion.getSafety()
+                + this.price * criterion.getPrice();
+    }
 }
