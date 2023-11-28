@@ -50,5 +50,4 @@ public class Product {
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @OrderBy("id asc") // 후기 정렬
     private List<Mark> markList;
-
 }
