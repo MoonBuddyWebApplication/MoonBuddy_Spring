@@ -1,13 +1,13 @@
 package com.project.moonbuddy.product.dto.response;
 
-//import com.project.moonbuddy.product.Mark;
-import com.project.moonbuddy.product.Mark;
+//import com.project.moonbuddy.product.model.entity.Mark;
+import com.project.moonbuddy.product.dto.IngredientDTO;
 import com.project.moonbuddy.product.dto.MarkDTO;
 import com.project.moonbuddy.product.dto.ReviewDTO;
+import io.swagger.v3.oas.models.security.SecurityScheme.In;
 import lombok.Builder;
 import lombok.Data;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Builder
@@ -22,12 +22,7 @@ public class ProductResponse {
     private String product_image;
     private String product_info_image;
     private double score;
-
-//    private String image;
     private List<ReviewDTO.Response> reviewList;
     private List<MarkDTO.Response> markList;
-
-
-
-
+    private List<IngredientDTO> ingredientList;
 }
