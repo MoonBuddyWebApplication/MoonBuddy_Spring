@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity(name = "product")
@@ -26,10 +27,10 @@ public class Product {
     private String brand;
     @Column(name = "release_date", nullable = false)
     private String release_date;
-    @Column(name = "description")
-    private String description;
-    @Column(name = "picture")
-    private String picture;
+    @Column(name = "product_image")
+    private String product_image;
+    @Column(name = "product_info_image")
+    private String product_info_image;
     @Column(name = "absortion", nullable = false)
     private double absortion;
     @Column(name = "humidity", nullable = false)
@@ -40,14 +41,13 @@ public class Product {
     private double safety;
     @Column(name = "price", nullable = false)
     private double price;
-    @Column(name="image")
-    private String image;
+
 
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
     @OrderBy("id asc") // 후기 정렬
     private List<Review> reviewList;
 
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    @OrderBy("id asc") // 후기 정렬
+    @OrderBy("id asc")
     private List<Mark> markList;
 }
