@@ -21,6 +21,7 @@ public class ProductResponse {
     private String release_date;
     private String product_image;
     private String product_info_image;
+    private int product_price;
     private double score;
     private List<ReviewDTO.Response> reviewList;
     private List<MarkDTO.Response> markList;

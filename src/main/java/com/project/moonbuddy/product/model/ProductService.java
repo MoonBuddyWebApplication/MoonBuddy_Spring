@@ -52,6 +52,7 @@ public class ProductService {
                 .release_date(product.getRelease_date())
                 .product_image(product.getProduct_image())
                 .product_info_image(product.getProduct_info_image())
+                .product_price(product.getProduct_price())
                 .score(product.getScore(user.getCriterion()))
                 .reviewList(reviewlist)
                 .markList(marklist)

@@ -32,6 +32,8 @@ public class Product {
     private String product_image;
     @Column(name = "product_info_image")
     private String product_info_image;
+    @Column(name = "product_price")
+    private int product_price;
     @Column(name = "absortion", nullable = false)
     private double absortion;
     @Column(name = "humidity", nullable = false)
