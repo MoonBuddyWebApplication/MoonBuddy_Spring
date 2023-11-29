@@ -1,7 +1,6 @@
 package com.project.moonbuddy.product.dto;
 
-import com.project.moonbuddy.product.Mark;
-import com.project.moonbuddy.product.Review;
+import com.project.moonbuddy.product.model.entity.Mark;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
