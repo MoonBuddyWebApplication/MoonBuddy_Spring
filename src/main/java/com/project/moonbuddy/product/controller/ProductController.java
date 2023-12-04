@@ -27,7 +27,6 @@ import java.util.List;
 
 public class ProductController {
     private final ProductService productService;
-    private HttpSession httpSession;;
 
     @Operation(summary = "select products", description = "상품 전체 조회하기")
     @ApiResponses(value = {
