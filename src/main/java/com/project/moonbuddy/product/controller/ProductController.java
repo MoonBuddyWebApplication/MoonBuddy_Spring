@@ -2,6 +2,7 @@ package com.project.moonbuddy.product.controller;
 
 
 import com.project.moonbuddy.auth.model.UserPrincipal;
+import com.project.moonbuddy.product.dto.response.ProductListResponse;
 import com.project.moonbuddy.product.model.ProductService;
 import com.project.moonbuddy.product.dto.response.ProductResponse;
 import io.swagger.v3.oas.annotations.Operation;
@@ -35,7 +36,7 @@ public class ProductController {
     })
     @GetMapping("/viewAll")
     public ResponseEntity viewAll(@AuthenticationPrincipal UserPrincipal loginUser){
-        List<ProductResponse> productList=productService.selectAll(loginUser);
+        List<ProductListResponse> productList=productService.selectAll(loginUser);
         return ResponseEntity.status(HttpStatus.OK).body(productList);
 
     }

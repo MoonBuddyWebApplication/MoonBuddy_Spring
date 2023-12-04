@@ -54,7 +54,7 @@ public class Product {
     @OrderBy("id asc")
     private List<Mark> markList;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
     private List<ProductIngredient> ingredients = new ArrayList<>();
 
     public double getScore(Criterion criterion) {
