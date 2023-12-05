@@ -3,6 +3,7 @@ import com.project.moonbuddy.auth.model.UserPrincipal;
 import com.project.moonbuddy.product.dto.IngredientDTO;
 import com.project.moonbuddy.product.dto.MarkDTO;
 import com.project.moonbuddy.product.dto.ReviewDTO;
+import com.project.moonbuddy.product.dto.response.ProductListResponse;
 import com.project.moonbuddy.product.dto.response.ProductResponse;
 import com.project.moonbuddy.product.model.entity.Product;
 import com.project.moonbuddy.product.model.repository.ProductRepository;
@@ -52,6 +53,7 @@ public class ProductService {
                 .release_date(product.getRelease_date())
                 .product_image(product.getProduct_image())
                 .product_info_image(product.getProduct_info_image())
+                .product_price(product.getProduct_price())
                 .score(product.getScore(user.getCriterion()))
                 .reviewList(reviewlist)
                 .markList(marklist)
@@ -59,11 +61,13 @@ public class ProductService {
                 .build();
     }
 
-    public List<ProductResponse> selectAll(UserPrincipal loginUser) {
+    public List<ProductListResponse> selectAll(UserPrincipal loginUser) {
+        Long userId = getLoginUserId(loginUser);
+        User user = userRepository.findById(userId).orElseThrow(() -> new RuntimeException("존재하지 않는 사용자입니다."));
         List<Product> productList = productRepository.findAll();
-        List<ProductResponse> result = new ArrayList<>();
+        List<ProductListResponse> result = new ArrayList<>();
         productList.forEach(v->{
-            result.add(select(v.getId(), loginUser));
+            result.add(ProductListResponse.of(v, user));
         });
 
         return result;

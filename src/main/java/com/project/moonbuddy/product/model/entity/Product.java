@@ -32,6 +32,8 @@ public class Product {
     private String product_image;
     @Column(name = "product_info_image")
     private String product_info_image;
+    @Column(name = "product_price")
+    private int product_price;
     @Column(name = "absortion", nullable = false)
     private double absortion;
     @Column(name = "humidity", nullable = false)
@@ -52,7 +54,7 @@ public class Product {
     @OrderBy("id asc")
     private List<Mark> markList;
 
-    @OneToMany(mappedBy = "product")
+    @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)
     private List<ProductIngredient> ingredients = new ArrayList<>();
 
     public double getScore(Criterion criterion) {

@@ -2,8 +2,8 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://moonbuddy.cpyvecptwrde.eu-north-1.rds.amazonaws.com:3306/moonbuddy?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-    username: moonbuddy
-    password: moonbuddy123!
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
   jpa:
     hibernate:
       ddl-auto: update

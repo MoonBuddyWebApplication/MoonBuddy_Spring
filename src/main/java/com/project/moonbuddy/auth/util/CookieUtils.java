@@ -24,13 +24,13 @@ public class CookieUtils {
     public static void addCookie(HttpServletResponse response, String name, String value, boolean httpOnly, boolean secure, int maxAge) {
         Cookie cookie = new Cookie(name, value);
         cookie.setPath("/");
-        cookie.setHttpOnly(httpOnly);
-        //cookie.setSecure(secure);
+        //cookie.setHttpOnly(httpOnly);
+        cookie.setSecure(secure);
         cookie.setMaxAge(maxAge);
         response.addCookie(cookie);
         // Set-Cookie 헤더를 추가하여 쿠키를 클라이언트에게 전송
         //response.setHeader("Set-Cookie", String.format("%s=%s; Max-Age=%d; Path=/; HttpOnly; Secure", name, value, maxAge));
-        response.setHeader("Set-Cookie", String.format("%s=%s; Max-Age=%d; Domain=localhost; Path=/;", name, value, maxAge));
+        response.setHeader("Set-Cookie", String.format("%s=%s; Max-Age=%d; Domain=domarketdodo.shop; Path=/; Secure", name, value, maxAge));
     }
 
     public static void deleteCookie(HttpServletRequest request, HttpServletResponse response, String name) {
