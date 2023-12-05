@@ -21,6 +21,7 @@ public class ProductListResponse {
                 .product_id(v.getId())
                 .name(v.getName())
                 .brand(v.getBrand())
+                .release_date(v.getRelease_date())
                 .product_image(v.getProduct_image())
                 .product_price(v.getProduct_price())
                 .score(v.getScore(user.getCriterion()))
