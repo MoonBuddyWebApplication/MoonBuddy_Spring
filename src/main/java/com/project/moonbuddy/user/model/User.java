@@ -1,6 +1,7 @@
 package com.project.moonbuddy.user.model;
 
 import com.project.moonbuddy.user.dto.UserDTO;
+import com.project.moonbuddy.user.dto.UserInfoDTO;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -36,8 +37,13 @@ public class User {
                 .criterion(criterion)
                 .build();
     }
-
-    public double getScore() {
-        return 0;
+    public User update(UserInfoDTO userInfoDTO, String pass) {
+        return User.builder()
+                .id(id)
+                .userId(userInfoDTO.getUserId())
+                .pw(pass)
+                .nickName(userInfoDTO.getNickName())
+                .criterion(criterion)
+                .build();
     }
 }

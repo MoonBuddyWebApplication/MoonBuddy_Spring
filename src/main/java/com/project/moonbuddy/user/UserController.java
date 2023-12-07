@@ -3,6 +3,7 @@ package com.project.moonbuddy.user;
 import com.project.moonbuddy.auth.model.UserPrincipal;
 import com.project.moonbuddy.user.dto.CriterionDTO;
 import com.project.moonbuddy.user.dto.UserDTO;
+import com.project.moonbuddy.user.dto.UserInfoDTO;
 import com.project.moonbuddy.user.model.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -48,8 +49,18 @@ public class UserController {
             @ApiResponse(responseCode = "400", description = "BAD REQUEST"),
     })
     @PostMapping ("/update")
-    public ResponseEntity<String> update(@AuthenticationPrincipal UserPrincipal loginUser, @RequestBody CriterionDTO criterionDTO) {
-        String status = userService.update(loginUser, criterionDTO);
+    public ResponseEntity<String> update(@AuthenticationPrincipal UserPrincipal loginUser, @RequestBody UserInfoDTO userInfoDTO) {
+        String status = userService.update(loginUser, userInfoDTO);
+        return ResponseEntity.status(HttpStatus.OK).body(status);
+    }
+    @Operation(summary = "update user criterion", description = "회원 중요도 수정")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "OK"),
+            @ApiResponse(responseCode = "400", description = "BAD REQUEST"),
+    })
+    @PostMapping ("/update-criterion")
+    public ResponseEntity<String> updateCriterion(@AuthenticationPrincipal UserPrincipal loginUser, @RequestBody CriterionDTO criterionDTO) {
+        String status = userService.updateCriterion(loginUser, criterionDTO);
         return ResponseEntity.status(HttpStatus.OK).body(status);
     }
 
