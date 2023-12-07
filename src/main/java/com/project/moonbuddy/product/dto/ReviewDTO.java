@@ -14,13 +14,13 @@ public class ReviewDTO {
     public static class Request {
         private Long userId;
         private Long productId;
-        private String reviewcommnet;
+        private String reviewcomment;
 
         public Review toEntity(User user, Product product) {
             Review review = Review.builder()
                     .user(user)
                     .product(product)
-                    .reviewContetent(reviewcommnet)
+                    .reviewContetent(reviewcomment)
                     .build();
             return review;
 

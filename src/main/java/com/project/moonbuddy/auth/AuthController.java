@@ -33,6 +33,8 @@ public class AuthController {
     // 로그인
     @PostMapping
     public ResponseEntity authenticationUsernamePassword(@Valid @RequestBody AuthDTO authorizationRequest, HttpServletRequest request, HttpServletResponse response){
+        log.info("id ; {}",authorizationRequest.getUsername());
+        log.info("pw ; {}",authorizationRequest.getPassword());
         try {
             Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authorizationRequest.getUsername(), authorizationRequest.getPassword()));
             UserPrincipal userPrincipal = (UserPrincipal) authentication.getPrincipal();
