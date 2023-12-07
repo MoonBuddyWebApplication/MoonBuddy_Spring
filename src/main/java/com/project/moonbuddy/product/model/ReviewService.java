@@ -1,5 +1,6 @@
 package com.project.moonbuddy.product.model;
 
+import com.project.moonbuddy.auth.model.UserPrincipal;
 import com.project.moonbuddy.product.dto.ReviewDTO;
 import com.project.moonbuddy.product.model.entity.Product;
 import com.project.moonbuddy.product.model.repository.ProductRepository;
@@ -22,11 +23,11 @@ public class ReviewService {
     private UserRepository userRepository;
 
 
-    public String post(ReviewDTO.Request request) {
+    public String post(ReviewDTO.Request request, UserPrincipal loginUser) {
 
         Product product = productRepository.findById(request.getProductId())
                 .orElseThrow(()-> new RuntimeException("존재하지 않는 상품입니다."));
-        User user = userRepository.findById(request.getUserId())
+        User user = userRepository.findById(getLoginUserId(loginUser))
                 .orElseThrow(()-> new RuntimeException("존재하지 않는 사용자입니다."));
         Review review = request.toEntity(user,product);
         reviewRepository.save(review);
@@ -39,5 +40,10 @@ public class ReviewService {
         return "SUCCESS";
     }
 
-
+    public Long getLoginUserId(UserPrincipal loginUser) {
+        if (loginUser == null) {
+            return 13L;
+        }
+        return loginUser.getId();
+    }
 }

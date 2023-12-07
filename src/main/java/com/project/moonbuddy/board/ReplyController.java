@@ -29,8 +29,6 @@ public class ReplyController {
     })
     @PostMapping("/post")
     public ResponseEntity post(@RequestBody ReplyDTO.Request request, @AuthenticationPrincipal UserPrincipal loginUser){
-        //SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
-        //User user = userService.findUser(sessionUser);
         String status = replyService.post(request, loginUser);
         return ResponseEntity.status(HttpStatus.OK).body(status);
     }

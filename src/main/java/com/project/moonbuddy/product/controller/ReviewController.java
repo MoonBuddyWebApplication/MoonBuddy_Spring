@@ -1,6 +1,7 @@
 package com.project.moonbuddy.product.controller;
 
 
+import com.project.moonbuddy.auth.model.UserPrincipal;
 import com.project.moonbuddy.product.model.ReviewService;
 import com.project.moonbuddy.product.dto.ReviewDTO;
 import io.swagger.v3.oas.annotations.Operation;
@@ -10,6 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -25,8 +27,8 @@ public class ReviewController {
             @ApiResponse(responseCode = "400", description = "BAD REQUEST"),
     })
     @PostMapping("/post")
-    public ResponseEntity post(@RequestBody ReviewDTO.Request request){
-        String status= reviewService.post(request);
+    public ResponseEntity post(@RequestBody ReviewDTO.Request request, @AuthenticationPrincipal UserPrincipal loginUser){
+        String status= reviewService.post(request, loginUser);
         return ResponseEntity.status(HttpStatus.OK).body(status);
 
     }

@@ -12,7 +12,6 @@ public class ReviewDTO {
     @NoArgsConstructor
     @Builder
     public static class Request {
-        private Long userId;
         private Long productId;
         private String reviewcomment;
 

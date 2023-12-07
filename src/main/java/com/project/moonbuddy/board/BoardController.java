@@ -26,8 +26,6 @@ import java.util.List;
 public class BoardController {
     private final BoardService boardService;
 
-    private HttpSession httpSession;
-
     @Operation(summary = "get posts", description = "게시물 가져오기")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "OK"),
@@ -92,8 +90,6 @@ public class BoardController {
     })
     @PostMapping("/like/{id}")
     public ResponseEntity like(@PathVariable("id") Long id, @AuthenticationPrincipal UserPrincipal loginUser){
-        //SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
-        //User user = userService.findUser(sessionUser);
         String status = boardService.like(id, loginUser);
         return ResponseEntity.status(HttpStatus.OK).body(status);
     }
