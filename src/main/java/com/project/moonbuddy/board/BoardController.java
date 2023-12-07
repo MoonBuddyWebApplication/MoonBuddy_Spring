@@ -1,5 +1,6 @@
 package com.project.moonbuddy.board;
 
+import com.project.moonbuddy.auth.model.UserPrincipal;
 import com.project.moonbuddy.board.dto.request.BoardWrite;
 import com.project.moonbuddy.board.dto.response.BoardResponse;
 import com.project.moonbuddy.board.model.BoardService;
@@ -11,6 +12,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpSession;
@@ -43,9 +45,9 @@ public class BoardController {
             @ApiResponse(responseCode = "400", description = "BAD REQUEST"),
     })
     @PostMapping("/post")
-    public ResponseEntity post(@RequestBody BoardWrite boardWrite){
+    public ResponseEntity post(@RequestBody BoardWrite boardWrite, @AuthenticationPrincipal UserPrincipal loginUser){
         log.info("boardWrite={}", boardWrite);
-        String status = boardService.register(boardWrite);
+        String status = boardService.register(boardWrite, loginUser);
 
         return ResponseEntity.status(HttpStatus.OK).body(status);
     }
@@ -89,10 +91,10 @@ public class BoardController {
             @ApiResponse(responseCode = "400", description = "BAD REQUEST"),
     })
     @PostMapping("/like/{id}")
-    public ResponseEntity like(@PathVariable("id") Long id){
+    public ResponseEntity like(@PathVariable("id") Long id, @AuthenticationPrincipal UserPrincipal loginUser){
         //SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
         //User user = userService.findUser(sessionUser);
-        String status = boardService.like(id);
+        String status = boardService.like(id, loginUser);
         return ResponseEntity.status(HttpStatus.OK).body(status);
     }
 

@@ -1,5 +1,6 @@
 package com.project.moonbuddy.user;
 
+import com.project.moonbuddy.auth.model.UserPrincipal;
 import com.project.moonbuddy.user.dto.CriterionDTO;
 import com.project.moonbuddy.user.dto.UserDTO;
 import com.project.moonbuddy.user.model.UserService;
@@ -9,6 +10,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,9 +37,9 @@ public class UserController {
             @ApiResponse(responseCode = "200", description = "OK"),
             @ApiResponse(responseCode = "400", description = "BAD REQUEST"),
     })
-    @GetMapping("/read/{userId}")
-    public ResponseEntity<UserDTO> read(@PathVariable Long userId) {
-        UserDTO userDTO = userService.read(userId);
+    @GetMapping("/read")
+    public ResponseEntity<UserDTO> read(@AuthenticationPrincipal UserPrincipal loginUser) {
+        UserDTO userDTO = userService.read(loginUser);
         return ResponseEntity.status(HttpStatus.OK).body(userDTO);
     }
     @Operation(summary = "update user", description = "회원 정보 수정")
@@ -45,9 +47,9 @@ public class UserController {
             @ApiResponse(responseCode = "200", description = "OK"),
             @ApiResponse(responseCode = "400", description = "BAD REQUEST"),
     })
-    @PostMapping ("/update/{userId}")
-    public ResponseEntity<String> update(@PathVariable Long userId, @RequestBody CriterionDTO criterionDTO) {
-        String status = userService.update(userId, criterionDTO);
+    @PostMapping ("/update")
+    public ResponseEntity<String> update(@AuthenticationPrincipal UserPrincipal loginUser, @RequestBody CriterionDTO criterionDTO) {
+        String status = userService.update(loginUser, criterionDTO);
         return ResponseEntity.status(HttpStatus.OK).body(status);
     }
 

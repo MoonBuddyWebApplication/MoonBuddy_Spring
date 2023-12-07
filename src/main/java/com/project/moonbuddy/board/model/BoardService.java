@@ -1,5 +1,6 @@
 package com.project.moonbuddy.board.model;
 
+import com.project.moonbuddy.auth.model.UserPrincipal;
 import com.project.moonbuddy.board.dto.ReplyDTO;
 import com.project.moonbuddy.board.dto.request.BoardWrite;
 import com.project.moonbuddy.board.dto.response.BoardResponse;
@@ -28,8 +29,8 @@ public class BoardService {
         this.userRepository = userRepository;
         this.boardLikeRepository = boardLikeRepository;
     }
-    public String register(BoardWrite boardWrite) {
-        User user = userRepository.findById(boardWrite.getUserId())
+    public String register(BoardWrite boardWrite, UserPrincipal loginUser) {
+        User user = userRepository.findById(getLoginUserId(loginUser))
                 .orElseThrow(()-> new RuntimeException("존재하지 않는 사용자입니다."));
 
         Board board = Board.builder()
@@ -92,10 +93,10 @@ public class BoardService {
         return result;
     }
 
-    public String like(Long id) {
+    public String like(Long id, UserPrincipal loginUser) {
         Board board = boardRepository.findById(id)
                 .orElseThrow(()-> new RuntimeException("존재하지 않는 게시글입니다."));
-        User user = userRepository.findById(2L)
+        User user = userRepository.findById(getLoginUserId(loginUser))
                 .orElseThrow(()-> new RuntimeException("존재하지 않는 사용자입니다."));
         BoardLike boardLike = boardLikeRepository.findByBoardIdAndUserId(board.getId(), 2L);
         if(boardLike !=  null) {
@@ -112,5 +113,12 @@ public class BoardService {
         }
 
         return "SUCCESS";
+    }
+
+    public Long getLoginUserId(UserPrincipal loginUser) {
+        if (loginUser == null) {
+            return 13L;
+        }
+        return loginUser.getId();
     }
 }

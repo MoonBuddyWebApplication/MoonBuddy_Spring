@@ -12,7 +12,6 @@ public class ReplyDTO {
     @NoArgsConstructor
     @Builder
     public static class Request {
-        private Long userId;
         private Long boardId;
         private String comment;
         /* Dto -> Entity */

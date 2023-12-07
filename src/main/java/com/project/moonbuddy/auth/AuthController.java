@@ -57,6 +57,7 @@ public class AuthController {
     @PostMapping("/logout")
     public ResponseEntity<?> expiredToken(HttpServletRequest request, HttpServletResponse response) {
         CookieUtils.deleteCookie(request, response, "access_token");
+        CookieUtils.deleteCookie(request, response, "JSESSIONID");
         //CookieUtils.deleteCookie(request, response, StatelessCSRFFilter.CSRF_TOKEN);
         return ResponseEntity.ok("SUCCESS");
     }

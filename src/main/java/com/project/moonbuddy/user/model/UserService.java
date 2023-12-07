@@ -1,5 +1,6 @@
 package com.project.moonbuddy.user.model;
 
+import com.project.moonbuddy.auth.model.UserPrincipal;
 import com.project.moonbuddy.user.dto.CriterionDTO;
 import com.project.moonbuddy.user.dto.UserDTO;
 import lombok.RequiredArgsConstructor;
@@ -20,15 +21,22 @@ public class UserService {
         return "SUCCESS";
     }
 
-    public UserDTO read(Long userId) {
-        User user = userRepository.findById(userId)
+    public UserDTO read(UserPrincipal loginUser) {
+        User user = userRepository.findById(getLoginUserId(loginUser))
                 .orElseThrow();
         return UserDTO.from(user);
     }
 
-    public String update(Long userId, CriterionDTO criterionDTO) {
-        Criterion criterion = criterionRepository.findByUserId(userId);
+    public String update(UserPrincipal loginUser, CriterionDTO criterionDTO) {
+        Criterion criterion = criterionRepository.findByUserId(getLoginUserId(loginUser));
         criterionRepository.save(criterion.update(criterionDTO));
         return "SUCCESS";
+    }
+
+    public Long getLoginUserId(UserPrincipal loginUser) {
+        if (loginUser == null) {
+            return 13L;
+        }
+        return loginUser.getId();
     }
 }

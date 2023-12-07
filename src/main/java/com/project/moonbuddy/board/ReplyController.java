@@ -1,5 +1,6 @@
 package com.project.moonbuddy.board;
 
+import com.project.moonbuddy.auth.model.UserPrincipal;
 import com.project.moonbuddy.board.dto.ReplyDTO;
 import com.project.moonbuddy.board.model.ReplyService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -10,6 +11,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @Tag(name = "Reply", description = "Reply API")
@@ -26,10 +28,10 @@ public class ReplyController {
             @ApiResponse(responseCode = "400", description = "BAD REQUEST"),
     })
     @PostMapping("/post")
-    public ResponseEntity post(@RequestBody ReplyDTO.Request request){
+    public ResponseEntity post(@RequestBody ReplyDTO.Request request, @AuthenticationPrincipal UserPrincipal loginUser){
         //SessionUser sessionUser = (SessionUser) httpSession.getAttribute("user");
         //User user = userService.findUser(sessionUser);
-        String status = replyService.post(request);
+        String status = replyService.post(request, loginUser);
         return ResponseEntity.status(HttpStatus.OK).body(status);
     }
     @Operation(summary = "delete", description = "댓글 삭제하기")
